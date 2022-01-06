@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: tahir
+      description: "For create author table"
+      changes:
+        - createTable:
+            tableName: author
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: authorPK
+                    nullable: false
+              - column:
+                  name: age
+                  type: INTEGER
+              - column:
+                  name: genre
+                  type: VARCHAR(255)
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+
+
+#              - column:
+#                  name: duration
+#                  type: FLOAT
+#              - column:
+#                  constraints:
+#                    nullable: false
+#                  name: name
+#                  type: VARCHAR(255)
+#              - column:
+#                  name: category_id
+#                  type: BIGINT
+#              - column:
+#                  name: icon
+#                  type: VARCHAR(255)
+#            tableName: courses
+#        - addForeignKeyConstraint:
+#            baseColumnNames: category_id
+#            baseTableName: courses
+#            constraintName: fk_categories_id
+#            deferrable: false
+#            initiallyDeferred: false
+#            referencedColumnNames: id
+#            referencedTableName: categories
+#            validate: true
+

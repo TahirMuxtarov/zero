@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: tahir
+      description: "For create book table"
+      changes:
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: bookPK
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: isbn
+                  type: VARCHAR(255)
+              - column:
+                  name: author_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseColumnNames: author_id
+            baseTableName: book
+            constraintName: fk_book_author
+            referencedColumnNames: id
+            referencedTableName: author
+
+#              - column:
+#                  name: duration
+#                  type: FLOAT
+#              - column:
+#                  constraints:
+#                    nullable: false
+#                  name: name
+#                  type: VARCHAR(255)
+#              - column:
+#                  name: category_id
+#                  type: BIGINT
+#              - column:
+#                  name: icon
+#                  type: VARCHAR(255)
+#            tableName: courses
+#        - addForeignKeyConstraint:
+#            baseColumnNames: category_id
+#            baseTableName: courses
+#            constraintName: fk_categories_id
+#            deferrable: false
+#            initiallyDeferred: false
+#            referencedColumnNames: id
+#            referencedTableName: categories
+#            validate: true
+
