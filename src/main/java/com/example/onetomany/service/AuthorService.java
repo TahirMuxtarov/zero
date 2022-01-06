@@ -21,6 +21,7 @@ import java.util.*;
 /*@Service
 @RequiredArgsConstructor
 @Slf4j*/
+@Service
 public class AuthorService {
 
     @PersistenceContext
@@ -79,5 +80,9 @@ public class AuthorService {
 
         return  entityManager.find(Author.class,id);
         //return authorRepository.findById(id);
+    }
+
+    public List<Author> ageIsLessThan(Integer age){
+       return authorRepository.findByAgeLessThan(age);
     }
 }

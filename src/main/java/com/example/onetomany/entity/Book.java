@@ -28,8 +28,7 @@ public class Book implements Serializable {
     private String isbn;
 
     //@JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY
-            ,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id",referencedColumnName = "id")
     private Author author;
 

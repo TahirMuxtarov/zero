@@ -25,10 +25,6 @@ public class OneToManyTestApplication implements CommandLineRunner {
 	}
 
 
-	private final BookService bookService;
-
-	private final AuthorService authorService;
-
 	@Override
 	public void run(String... args) throws Exception {
 
