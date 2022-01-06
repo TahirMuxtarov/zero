@@ -17,4 +17,12 @@ public class BookService {
     public List<Book> getAllBooks(){
         return bookRepository.findAll();
     }
+
+    public List<Book>findDistinctByName(String name){
+        return bookRepository.findDistinctByTitle(name);
+    }
+
+    public List<String> distinctByTitle(){
+        return bookRepository.distinctByTitle();
+    }
 }
