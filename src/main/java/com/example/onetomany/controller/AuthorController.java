@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/author/test")
+@RequestMapping("/author/test/test")
 @RequiredArgsConstructor
 public class AuthorController {
 
