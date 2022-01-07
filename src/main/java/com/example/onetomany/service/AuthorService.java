@@ -75,14 +75,16 @@ public class AuthorService {
         return author;
     }
 
-    public Author getAuthorById(Long id) {
-        authorRepository.findById(id);
+    public Optional<Author> getAuthorById(Long id) {
+      return  authorRepository.getAuthorById(id);
 
-        return  entityManager.find(Author.class,id);
+        //return  entityManager.find(Author.class,id);
         //return authorRepository.findById(id);
     }
 
     public List<Author> ageIsLessThan(Integer age){
        return authorRepository.findByAgeLessThan(age);
     }
+
+
 }

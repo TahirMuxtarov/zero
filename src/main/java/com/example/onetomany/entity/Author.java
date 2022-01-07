@@ -17,6 +17,7 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@NamedNativeQuery(name = "getAllBook",query = "select * from table book")
 //@JsonIgnoreProperties
 public class Author implements Serializable {
 

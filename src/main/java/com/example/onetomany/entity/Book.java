@@ -9,12 +9,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@NamedNativeQuery(name="Book.returnBook",query = "select * from book b where b.title like '%ow%'",resultClass = Book.class)
 //@JsonIgnoreProperties
 
 public class Book implements Serializable {

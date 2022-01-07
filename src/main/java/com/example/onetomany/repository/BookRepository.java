@@ -26,4 +26,8 @@ public interface BookRepository extends JpaRepository<Book,Long> {
     @Query(value = "select DISTINCT title from book",nativeQuery = true)
     //@Query(value = "select distinct title from book ;",nativeQuery = true)
     List<String>distinctByTitle();
+
+
+   /// @Query(value = "select * from book  where title like 'Re%'",nativeQuery = true)
+    List<Book> returnBook();
 }

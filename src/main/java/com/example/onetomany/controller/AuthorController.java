@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/author/")
@@ -17,11 +18,12 @@ public class AuthorController {
     private final AuthorService authorService;
 
     @GetMapping("{id}")
-    public Author getAuthorById(@PathVariable Long id){
+    public Optional<Author> getAuthorById(@PathVariable Long id){
         return authorService.getAuthorById(id);
     }
     @GetMapping("agex/{age}")
     public List<Author> ageLessThan(@PathVariable Integer age){
         return authorService.ageIsLessThan(age);
     }
+
 }
