@@ -1,18 +1,14 @@
 package com.example.onetomany.service;
 
 import com.example.onetomany.dto.AuthorDto;
-import com.example.onetomany.dto.BookDto;
+import com.example.onetomany.dto.MovieDto;
 import com.example.onetomany.entity.Author;
-import com.example.onetomany.entity.Book;
+import com.example.onetomany.entity.Movie;
 import com.example.onetomany.repository.AuthorRepository;
-import com.example.onetomany.repository.BookRepository;
-import liquibase.pro.packaged.A;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import com.example.onetomany.repository.MovieRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,11 +28,12 @@ public class AuthorService {
     private  AuthorRepository authorRepository;
 
     @Autowired
-    private  BookRepository bookRepository;
+    private MovieRepository bookRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
+/*
 
 
 
@@ -58,12 +55,12 @@ public class AuthorService {
         return authorDto;
     }
 
-    private Book mapToBook(BookDto bookDto){
-        Book book = modelMapper.map(bookDto,Book.class);
+    private Movie mapToBook(MovieDto bookDto){
+        Movie book = modelMapper.map(bookDto, Movie.class);
         return book;
     }
-    private BookDto mapToBookDto(Book book){
-        BookDto bookDto = modelMapper.map(book,BookDto.class);
+    private MovieDto mapToBookDto(Movie book){
+        MovieDto bookDto = modelMapper.map(book, MovieDto.class);
         return bookDto;
     }
     private AuthorDto mapToDto(Author author){
@@ -85,6 +82,7 @@ public class AuthorService {
     public List<Author> ageIsLessThan(Integer age){
        return authorRepository.findByAgeLessThan(age);
     }
+*/
 
 
 }

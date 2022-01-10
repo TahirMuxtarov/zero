@@ -17,7 +17,7 @@ public class AuthorController {
 
     private final AuthorService authorService;
 
-    @GetMapping("{id}")
+    /*@GetMapping("{id}")
     public Optional<Author> getAuthorById(@PathVariable Long id){
         return authorService.getAuthorById(id);
     }
@@ -25,5 +25,5 @@ public class AuthorController {
     public List<Author> ageLessThan(@PathVariable Integer age){
         return authorService.ageIsLessThan(age);
     }
-
+*/
 }

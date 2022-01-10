@@ -1,11 +1,11 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: 3
       author: tahir
-      description: "For create author table"
+      description: "For create actors_movies table"
       changes:
         - createTable:
-            tableName: author
+            tableName: actors_movies
             columns:
               - column:
                   name: id
@@ -13,18 +13,26 @@ databaseChangeLog:
                   autoIncrement: true
                   constraints:
                     primaryKey: true
-                    primaryKeyName: authorPk
+                    primaryKeyName: actors_movies_Pk
                     nullable: false
               - column:
-                  name: age
-                  type: INTEGER
+                  name: actor_id
+                  type: BIGINT
               - column:
-                  name: genre
-                  type: VARCHAR(255)
-              - column:
-                  name: name
-                  type: VARCHAR(255)
-
+                  name: movie_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseColumnNames: actor_id
+            baseTableName: actors_movies
+            constraintName: fk_actor_id
+            referencedColumnNames: id
+            referencedTableName: actor
+        - addForeignKeyConstraint:
+            baseColumnNames: movie_id
+            baseTableName: actors_movies
+            constraintName: fk_movie_id
+            referencedColumnNames: id
+            referencedTableName: movie
 
 #              - column:
 #                  name: duration

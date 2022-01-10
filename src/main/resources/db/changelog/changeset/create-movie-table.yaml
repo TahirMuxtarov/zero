@@ -2,10 +2,10 @@ databaseChangeLog:
   - changeSet:
       id: 2
       author: tahir
-      description: "For create book table"
+      description: "For create movie table"
       changes:
         - createTable:
-            tableName: book
+            tableName: movie
             columns:
               - column:
                   name: id
@@ -13,7 +13,7 @@ databaseChangeLog:
                   autoIncrement: true
                   constraints:
                     primaryKey: true
-                    primaryKeyName: bookPK
+                    primaryKeyName: moviePk
                     nullable: false
               - column:
                   name: title
@@ -26,8 +26,8 @@ databaseChangeLog:
                   type: BIGINT
         - addForeignKeyConstraint:
             baseColumnNames: author_id
-            baseTableName: book
-            constraintName: fk_book_author
+            baseTableName: movie
+            constraintName: fk_author_movie
             referencedColumnNames: id
             referencedTableName: author
 

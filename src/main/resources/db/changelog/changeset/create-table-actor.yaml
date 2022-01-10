@@ -1,11 +1,11 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: 4
       author: tahir
-      description: "For create author table"
+      description: "For create actor table"
       changes:
         - createTable:
-            tableName: author
+            tableName: actor
             columns:
               - column:
                   name: id
@@ -13,14 +13,11 @@ databaseChangeLog:
                   autoIncrement: true
                   constraints:
                     primaryKey: true
-                    primaryKeyName: authorPk
+                    primaryKeyName: actorPk
                     nullable: false
               - column:
                   name: age
                   type: INTEGER
-              - column:
-                  name: genre
-                  type: VARCHAR(255)
               - column:
                   name: name
                   type: VARCHAR(255)

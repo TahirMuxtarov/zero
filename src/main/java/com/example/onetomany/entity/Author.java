@@ -1,7 +1,6 @@
 package com.example.onetomany.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +16,7 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@NamedNativeQuery(name = "getAllBook",query = "select * from table book")
+//@NamedNativeQuery(name = "getAllBook",query = "select * from table book")
 //@JsonIgnoreProperties
 public class Author implements Serializable {
 
@@ -31,20 +30,21 @@ public class Author implements Serializable {
 
     private String genre;
     @JsonIgnore
-    @OneToMany(mappedBy = "author",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Book> books=new ArrayList<>();
+    @OneToMany(mappedBy = "author",orphanRemoval = true,cascade = CascadeType.ALL)
+    private List<Movie> movies=new ArrayList<>();
 
 
-    public Author addBook(Book book) {
-        this.books.add(book);
-        book.setAuthor(this);
+    public Author addMovie(Movie movie) {
+        this.movies.add(movie);
+        movie.setAuthor(this);
         return this;
     }
-    public Author removeBook(Book book) {
-        book.setAuthor(null);
-        this.books.remove(book);
+    public Author removeMovie(Movie movie) {
+        movie.setAuthor(null);
+        this.movies.remove(movie);
         return this;
     }
+
 
     @Override
     public String toString() {
@@ -53,29 +53,6 @@ public class Author implements Serializable {
                 ", age=" + age +
                 ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +
-                ", books=" + books +
                 '}';
     }
-
-  /*  public Author setId(Long id) {
-        this.id = id;
-        return this;
-    }
-    public Author setName(String name) {
-        this.name = name;
-        return this;
-    }
-    public Author setGenre(String genre) {
-        this.genre = genre;
-        return this;
-    }
-    public Author setAge(int age) {
-        this.age = age;
-        return this;
-    }
-    public Author setBooks(List<Book> books) {
-        this.books = books;
-        return this;
-    }*/
-
 }
