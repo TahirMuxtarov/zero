@@ -1,11 +1,13 @@
 package com.example.onetomany.controller;
 
 import com.example.onetomany.entity.Actor;
+import com.example.onetomany.entity.Actor_;
 import com.example.onetomany.repository.ActorRepository;
 import com.example.onetomany.repositoryImpl.ActorRepositoryCustomImpl;
 import com.example.onetomany.search.ActorSpecification;
 import com.example.onetomany.search.SearchCriteria;
 import com.example.onetomany.search.SearchOperation;
+import liquibase.pro.packaged.P;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +24,10 @@ public class ActorController {
     @Autowired
     private ActorRepositoryCustomImpl actorRepositoryCustomImpl;
 
-    @GetMapping
+    /*@GetMapping
     public List<Actor> actors (@RequestBody Actor actor){
       return actorRepository.actors(actor);
-    }
+    }*/
 
     @GetMapping("spec/{namelike}")
     public List<Actor> findNameLike(@PathVariable String namelike){
@@ -54,10 +56,26 @@ public class ActorController {
         Specification<Actor> spec = Specification.where(actorSpecification);
         return actorRepository.findAll(spec);
     }
-    @GetMapping("namelikeXX/{name}")
-    public List<Actor>ageLessThanAndNameLikeSpec(@PathVariable String name){
-        Specification<Actor> spec = Specification.where(actorRepositoryCustomImpl.nameLikeXXX(name));
+    @GetMapping("namelikeXX/{age}/{name}")
+    public List<Actor>ageLessThanAndNameLikeSpec2(@PathVariable Integer age, @PathVariable String name){
 
-        return actorRepository.findAll(spec);
+        return actorRepository.findAll((root, query, criteriaBuilder) ->
+                criteriaBuilder.or(criteriaBuilder.equal(root.get(Actor_.NAME),name)
+                        ,criteriaBuilder.lessThan(root.get(Actor_.AGE),age)));
+                //.lessThan(root.get(Actor_.age),age));
     }
+    @GetMapping("queryMethod/{age}")
+    public List<Actor>actorList(@PathVariable Integer age){
+        return actorRepository.findByAgeLessThan(age);
+    }
+
+    @GetMapping("namelikeXXX/{age}/{name}")
+    public List<Actor>ageLessThanAndNameLikeSpec3(@PathVariable Integer age, @PathVariable String name){
+
+        return actorRepository.findAll((root, query, criteriaBuilder) ->
+                criteriaBuilder.or(criteriaBuilder.equal(root.get(Actor_.NAME),name)
+                        ,criteriaBuilder.lessThan(root.get(Actor_.AGE),age)));
+        //.lessThan(root.get(Actor_.age),age));
+    }
+
 }

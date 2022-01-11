@@ -44,10 +44,7 @@ public class ActorRepositoryCustomImpl implements ActorRepositoryCustom {
         return query.getResultList();
     }
 
-    @Override
-    public List<Actor> nameLikeSpec(String name) {
-        return null;
-    }
+
 
 
 
@@ -61,10 +58,7 @@ public class ActorRepositoryCustomImpl implements ActorRepositoryCustom {
         };
     }
 
-    @Override
-    public List<Actor> findAllByNameLike(String nameLike) {
-        return null;
-    }
+
 
     public Specification<Actor> nameLikeXXX(String name){
         return (root, query, criteriaBuilder)

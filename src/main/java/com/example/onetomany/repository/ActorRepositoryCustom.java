@@ -9,7 +9,7 @@ import java.util.List;
 public interface ActorRepositoryCustom {
     List<Actor> actors (Actor actor);
 
-    List<Actor> nameLikeSpec(String name);
 
-    List<Actor>findAllByNameLike(String nameLike);
+
+
 }
