@@ -29,6 +29,16 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.modelmapper:modelmapper:2.4.4'
 	annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.3.20.Final')
+	//compile 'com.speedment.jpastreamer:jpastreamer-core:1.0.2'
+	annotationProcessor 'com.speedment.jpastreamer:fieldgenerator-standard:1.0.2'
+}
+sourceSets {
+	main {
+		java {
+			srcDir 'src/main/java'
+			srcDir 'target/generated-sources/annotations'
+		}
+	}
 }
 
 test {

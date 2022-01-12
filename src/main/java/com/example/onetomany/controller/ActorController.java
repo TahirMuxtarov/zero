@@ -78,4 +78,11 @@ public class ActorController {
         //.lessThan(root.get(Actor_.age),age));
     }
 
+
+    /*private Specification<Actor> isPremium() {
+        return (root, query, criteriaBuilder) ->criteriaBuilder.and(criteriaBuilder.equal(root.get(Actor_.MANUFACTURING_PLACE).get(Actor_.STATE),STATE.CALIFORNIA),
+                        criteriaBuilder.greaterThanOrEqualTo(root.get(Actor_.PRICE), PREMIUM_PRICE));
+    }
+*/
+
 }
