@@ -1,7 +1,7 @@
 package com.example.onetomany.repositoryImpl;
 
 import com.example.onetomany.entity.Actor;
-import com.example.onetomany.entity.Actor_;
+//import com.example.onetomany.entity.Actor_;
 import com.example.onetomany.entity.Movie;
 import com.example.onetomany.repository.ActorRepositoryCustom;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ActorRepositoryCustomImpl implements ActorRepositoryCustom {
     @Autowired
     private EntityManager entityManager;
 
-    @Override
+   /* @Override
     public List<Actor> actors(Actor actorx) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Actor> criteriaQuery = criteriaBuilder.createQuery(Actor.class);
@@ -34,7 +34,6 @@ public class ActorRepositoryCustomImpl implements ActorRepositoryCustom {
             name3Predicate = criteriaBuilder.or(name1Predicate,name2Predicate);
         }
 
-
         //Predicate name3Predicate = criteriaBuilder.equal(movie.get("age"),name[1]);
         //criteriaQuery.where(criteriaBuilder.equal(actor.get(actor_.name),"leonardo"));
         //criteriaQuery.having()
@@ -43,13 +42,13 @@ public class ActorRepositoryCustomImpl implements ActorRepositoryCustom {
         TypedQuery<Actor> query = entityManager.createQuery(criteriaQuery);
         return query.getResultList();
     }
+*/
 
 
 
 
 
-
-    public static Specification<Actor> likeFirstName(String name){
+   /* public static Specification<Actor> likeFirstName(String name){
         if(name==null){
             return null;
         }
@@ -64,5 +63,5 @@ public class ActorRepositoryCustomImpl implements ActorRepositoryCustom {
         return (root, query, criteriaBuilder)
                 -> criteriaBuilder.like(root.get(Actor_.NAME), "%"+name+"%");
     }
-
+*/
 }

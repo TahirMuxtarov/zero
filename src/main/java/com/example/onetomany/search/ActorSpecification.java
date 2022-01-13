@@ -1,7 +1,7 @@
 package com.example.onetomany.search;
 
 import com.example.onetomany.entity.Actor;
-import com.example.onetomany.entity.Actor_;
+//import com.example.onetomany.entity.Actor_;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -51,7 +51,7 @@ public class ActorSpecification implements Specification<Actor> {
         }
     }
 
-    public static Specification<Actor> likeFirstName(String name){
+    /*public static Specification<Actor> likeFirstName(String name){
         if(name==null){
             return null;
         }
@@ -66,6 +66,6 @@ public class ActorSpecification implements Specification<Actor> {
         return (root, query, criteriaBuilder) -> {
             return criteriaBuilder.lessThan(root.get(Actor_.AGE),age);
         };
-    }
+    }*/
 
 }

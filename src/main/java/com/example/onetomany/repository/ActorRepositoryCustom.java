@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface ActorRepositoryCustom {
-    List<Actor> actors (Actor actor);
+   // List<Actor> actors (Actor actor);
 
 
 

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -26,4 +27,7 @@ public interface ActorRepository extends JpaRepository<Actor,Long> , JpaSpecific
     default Page<Actor> findAll(Pageable pageable) {
     return null;
     }
+
+    @Query("select a from Actor a where a.age >50")
+    List<Actor>olderThan50();
 }
