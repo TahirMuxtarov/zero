@@ -1,5 +1,6 @@
 package com.example.onetomany.controller;
 
+import com.example.onetomany.entity.Actor;
 import com.example.onetomany.entity.Movie;
 import com.example.onetomany.repository.AuthorRepository;
 import com.example.onetomany.repository.MovieRepository;
@@ -57,5 +58,9 @@ public class MovieController {
     @GetMapping("actors/{name1}/{name2}")
     public List<Movie>getMoviesByActors(@PathVariable String name1,@PathVariable String name2){
         return movieRepository.findMoviesWithActors(name1,name2);
+    }
+    @PostMapping("newActorTo/{id}")
+    public void newActorsToExistingMovie(@PathVariable Long id,@RequestBody List<Actor>actors){
+         movieService.newActorsToExistingMovie(id,actors);
     }
 }

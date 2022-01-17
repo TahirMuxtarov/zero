@@ -45,6 +45,12 @@ public class Author implements Serializable {
         return this;
     }
 
+    public Author(Integer age, String name, String genre, List<Movie> movies) {
+        this.age = age;
+        this.name = name;
+        this.genre = genre;
+        this.movies = movies;
+    }
 
     @Override
     public String toString() {

@@ -1,13 +1,22 @@
 package com.example.onetomany.service;
 
+import com.example.onetomany.entity.Actor;
 import com.example.onetomany.entity.Author;
 import com.example.onetomany.entity.Movie;
+import com.example.onetomany.repository.ActorRepository;
 import com.example.onetomany.repository.AuthorRepository;
 import com.example.onetomany.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class MovieService {
@@ -17,7 +26,8 @@ public class MovieService {
     @Autowired
     private AuthorRepository authorRepository;
 
-
+    @Autowired
+    private ActorRepository actorRepository;
 
     public void insertNewMovies(Long id,List<Movie>list){
         Author a = authorRepository.getById(id);
@@ -26,4 +36,24 @@ public class MovieService {
             movieRepository.save(m);
         }
     }
-}
+
+    //@Transactional
+    public  void newActorsToExistingMovie(Long id,List<Actor>actors) {
+
+        Set<Actor> set = movieRepository.getByMovieId(id).getActors();
+
+        for (Actor ac : actors) {
+            set.add(ac);
+        }
+    }
+ /*   @Transactional
+    public void insertNewBooksToExistingAuthor(Long id,Set<Book> books){
+        Author author = authorRepository.getAuthorById(id);
+        Set<Book> set = author.getBooks();
+        for(Book b:books){
+            set.add(b);
+        }
+    }*/
+
+    }
+

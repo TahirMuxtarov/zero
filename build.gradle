@@ -31,6 +31,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.modelmapper:modelmapper:2.4.4'
 	annotationProcessor 'org.hibernate:hibernate-jpamodelgen:5.3.20.Final'
+	testImplementation 'io.rest-assured:spring-mock-mvc:3.0.0'
+	///testImplementation 'org.mockito:mockito-all:1.10.19'
+	testImplementation 'org.powermock:powermock-module-junit4:2.0.2'
 
 }
 

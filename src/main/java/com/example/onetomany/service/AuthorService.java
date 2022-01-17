@@ -2,10 +2,13 @@ package com.example.onetomany.service;
 
 import com.example.onetomany.dto.AuthorDto;
 import com.example.onetomany.dto.MovieDto;
+import com.example.onetomany.entity.Actor;
 import com.example.onetomany.entity.Author;
 import com.example.onetomany.entity.Movie;
+import com.example.onetomany.repository.ActorRepository;
 import com.example.onetomany.repository.AuthorRepository;
 import com.example.onetomany.repository.MovieRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ import java.util.*;
 /*@Service
 @RequiredArgsConstructor
 @Slf4j*/
+@Slf4j
 @Service
 public class AuthorService {
 
@@ -28,10 +32,45 @@ public class AuthorService {
     private  AuthorRepository authorRepository;
 
     @Autowired
-    private MovieRepository bookRepository;
+    private MovieRepository movieRepository;
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private ActorRepository actorRepository;
+
+    public List<Movie> getAuthorsMoviesById(Long id) {
+       return authorRepository.getMoviesByAuthoId(id);
+    }
+
+    public Author save(Author author) {
+
+        log.info("inside save");
+        List<Movie>movies = author.getMovies();
+        for(Movie m: movies){
+            System.out.println(m+" movie");
+            m.setAuthor(author);
+            movieRepository.save(m);
+        }
+        return authorRepository.save(author);
+    }
+
+    public List<Movie> insertNewMoviesToExistingAuthor(List<Movie> movies,Long id) {
+        Author author = authorRepository.getById(id);
+        log.info("insertNewMoviesToExistingAuthor");
+        for(Movie m:movies){
+            System.out.println(m);
+            for(Actor a:m.getActors()){
+                System.out.println(a);
+                actorRepository.save(a);
+
+            }
+            m.setAuthor(author);
+            movieRepository.save(m);
+        }
+        return movies;
+    }
 
 /*
 

@@ -1,5 +1,6 @@
 package com.example.onetomany.repository;
 
+import com.example.onetomany.entity.Actor;
 import com.example.onetomany.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -21,4 +22,9 @@ public interface MovieRepository extends JpaRepository<Movie,Long>, JpaSpecifica
 
     @Query("select m from Movie m where m.title =?1")
     Movie getByTitle(String title);
+
+    @Query("select m from Movie m where m.id =?1")
+    Movie getByMovieId(Long id);
+
+    //List<Actor> newActorsToExistingMovie(Long id, List<Actor> actors);
 }

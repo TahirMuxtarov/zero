@@ -1,9 +1,12 @@
 package com.example.onetomany.repository;
 
 import com.example.onetomany.entity.Author;
+import com.example.onetomany.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<Author,Long> {
@@ -34,5 +37,6 @@ public interface AuthorRepository extends JpaRepository<Author,Long> {
     Author fetchByNamelike(String name);
 
 
-
+    @Query("select  m from Movie m where author_id=?1")
+    List<Movie> getMoviesByAuthoId(Long id);
 }

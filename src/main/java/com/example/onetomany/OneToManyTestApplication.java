@@ -15,7 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OneToManyTestApplication implements CommandLineRunner {
 
 
-	@Autowired
+	/*@Autowired
 
 	private AuthorRepository authorRepository;
 
@@ -23,7 +23,7 @@ public class OneToManyTestApplication implements CommandLineRunner {
 
 	private MovieRepository movieRepository;
 
-
+*/
 	public static void main(String[] args) {
 		SpringApplication.run(OneToManyTestApplication.class, args);
 	}

@@ -30,4 +30,8 @@ public interface ActorRepository extends JpaRepository<Actor,Long> , JpaSpecific
 
     @Query("select a from Actor a where a.age >50")
     List<Actor>olderThan50();
+
+    @Query("select a from Actor a where a.id=?1")
+    Actor getByActorId(Long id);
+    //Actor selectExistByAge(Integer age);
 }

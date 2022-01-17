@@ -45,10 +45,15 @@ public class Movie implements Serializable {
         this.isbn = isbn;
     }
 
+    public Movie(String title, String isbn, Set<Actor> actors) {
+        this.title = title;
+        this.isbn = isbn;
+        this.actors = actors;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';

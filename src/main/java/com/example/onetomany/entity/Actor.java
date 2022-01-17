@@ -31,4 +31,35 @@ public class Actor {
     joinColumns = @JoinColumn(name="actor_id"),
     inverseJoinColumns =@JoinColumn(name= "movie_id"))
     private Set<Movie> movies = new HashSet<>();
+
+    /*public Actor(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Actor(Long id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }*/
+
+    public Actor(String name, Integer age, Set<Movie> movies) {
+        this.name = name;
+        this.age = age;
+        this.movies = movies;
+    }
+
+    public Actor(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", movies=" + movies +
+                '}';
+    }
 }
