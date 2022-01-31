@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   db:
-    container_name: postgres
+    container_name: postgresX
     image: postgres
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password
   adminer:
-    container_name: adminer
+    container_name: adminerX
     image: adminer
     restart: always
     depends_on:
