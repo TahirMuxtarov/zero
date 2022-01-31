@@ -39,4 +39,8 @@ public interface AuthorRepository extends JpaRepository<Author,Long> {
 
     @Query("select  m from Movie m where author_id=?1")
     List<Movie> getMoviesByAuthoId(Long id);
+
+    List<Author> findByNameContaining(String text);
+
+    List<Author>findByAgeGreaterThanEqual(Integer age);
 }

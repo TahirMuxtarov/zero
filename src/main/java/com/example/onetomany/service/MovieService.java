@@ -1,11 +1,13 @@
 package com.example.onetomany.service;
 
+import com.example.onetomany.dto.AuthorDto;
 import com.example.onetomany.entity.Actor;
 import com.example.onetomany.entity.Author;
 import com.example.onetomany.entity.Movie;
 import com.example.onetomany.repository.ActorRepository;
 import com.example.onetomany.repository.AuthorRepository;
 import com.example.onetomany.repository.MovieRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,9 @@ import java.util.Set;
 public class MovieService {
     @Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private AuthorRepository authorRepository;
@@ -45,6 +50,44 @@ public class MovieService {
         for (Actor ac : actors) {
             set.add(ac);
         }
+    }
+
+    public List<Movie> getAllMovies() {
+        return movieRepository.findAll();
+    }
+
+    public void save(Movie movie) {
+
+       /* for (Movie m : movies){
+            m.setAuthor(m.getAuthor());
+            movieRepository.save(m);
+        }*/
+        System.out.print(movie.getAuthor() +" actor is");
+        movie.setAuthor(movie.getAuthor());
+        movieRepository.save(movie);
+
+
+    }
+
+    public List<Movie> newMovies(List<Movie> movies) {
+        for(Movie m:movies){
+            movieRepository.save(m);
+        }
+        return movies;
+
+    }
+
+    public AuthorDto getAuthorByMovieId(Long id) {
+        Movie movie = movieRepository.getByMovieId(id);
+        System.err.println(movie);
+        Author author = movie.getAuthor();
+        AuthorDto authorDto = AuthorDto.builder()
+                        .age(author.getAge())
+                                .name(author.getName())
+                                        .genre(author.getGenre())
+                                                .build();
+        System.err.println(author);
+        return authorDto;
     }
  /*   @Transactional
     public void insertNewBooksToExistingAuthor(Long id,Set<Book> books){

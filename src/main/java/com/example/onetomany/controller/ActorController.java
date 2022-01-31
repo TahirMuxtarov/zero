@@ -2,6 +2,7 @@ package com.example.onetomany.controller;
 
 import com.example.onetomany.entity.Actor;
 //import com.example.onetomany.entity.Actor_;
+import com.example.onetomany.entity.Movie;
 import com.example.onetomany.exceptions.InvalidRequestException;
 import com.example.onetomany.repository.ActorRepository;
 import com.example.onetomany.repositoryImpl.ActorRepositoryCustomImpl;
@@ -9,26 +10,36 @@ import com.example.onetomany.search.ActorSpecification;
 import com.example.onetomany.search.SearchCriteria;
 import com.example.onetomany.search.SearchOperation;
 import com.example.onetomany.service.ActorService;
+import com.example.onetomany.service.ManyToManyServiceTest;
 import liquibase.pro.packaged.P;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @RestController
 @RequestMapping("/actor/")
 public class ActorController {
 
+    Logger logger = LoggerFactory.getLogger(ActorController.class);
+
     @Autowired
     private ActorRepository actorRepository;
 
     @Autowired
     private ActorRepositoryCustomImpl actorRepositoryCustomImpl;
+
+    @Autowired
+    private ManyToManyServiceTest manyToManyServiceTest;
 
     @Autowired
     private ActorService actorService;
@@ -75,7 +86,7 @@ public class ActorController {
     }*/
     @GetMapping("queryMethod/{age}")
     public List<Actor>actorList(@PathVariable Integer age){
-        log.info("actorList");
+        log.debug("actorList");
         return actorRepository.findByAgeLessThan(age);
     }
 
@@ -108,7 +119,8 @@ public class ActorController {
 
         @GetMapping("getAll")
         public List<Actor> getAllActors(){
-            return actorRepository.findAll();
+            log.debug("getAllActors");
+            return actorService.findAll();
         }
         @GetMapping("byId/{id}")
             public Actor getActorById (@PathVariable Long id){
@@ -134,12 +146,44 @@ public class ActorController {
             actor1.setName(actor.getName());
             return actorRepository.save(actor1);
         }
-        @DeleteMapping("/{id}")
+       /* @DeleteMapping("/{id}")
         public void deleteActorById(@PathVariable Long id)throws Exception{
             if(actorRepository.findById(id).isEmpty()){
                 throw new RuntimeException("actor not found by id given");
             }
              actorRepository.deleteById(id);
+        }*/
+        @PostMapping("newMovieExistingActor/{id}")
+        public void newMovieExistingAuthor(@PathVariable Long id,@RequestBody Movie movie) throws InterruptedException {
+            log.info("newMovieExistingActorTest");
+            System.out.println("xxxxxxxxxxxxx");
+            Thread.sleep(100);
+             actorService.newMovieExistingAuthor(id,movie);
+        }
+
+        /// Testing ManyToMany insert new actor with new movie from service when main side is actor
+        @PostMapping("testingmanytomany")
+        public void testing(){
+            System.err.println("Point 111");
+            manyToManyServiceTest.test();
+        }
+
+        @PostMapping("testingmanytomany/{id}")
+        public void newMoviesExistingActor(@PathVariable Long id,@RequestBody Set<Movie> movies){
+            actorService.saveNewMoviesExistingActor(id,movies);
+        }
+
+
+        @DeleteMapping("/{id}")
+        public void deleteActorById(@PathVariable Long id){
+            //manyToManyServiceTest.test2(id);
+            actorRepository.deleteById(id);
+        }
+
+
+        @PostMapping("movies/{id}/{idx}")
+        public void testx(@PathVariable Long id,@PathVariable Long idx){
+            actorService.testx(id,idx);
         }
 
 }

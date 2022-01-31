@@ -35,6 +35,7 @@ public class Movie implements Serializable {
     @JoinColumn(name = "author_id",referencedColumnName = "id")
     private Author author;
 
+
     @JsonIgnore
     @ManyToMany(mappedBy = "movies")
     private Set<Actor> actors = new HashSet<>();

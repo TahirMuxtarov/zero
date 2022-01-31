@@ -33,6 +33,11 @@ public class Author implements Serializable {
     @OneToMany(mappedBy = "author",orphanRemoval = true,cascade = CascadeType.ALL)
     private List<Movie> movies=new ArrayList<>();
 
+   /* public Author(Integer age, String name, String genre) {
+        this.age = age;
+        this.name = name;
+        this.genre = genre;
+    }*/
 
     public Author addMovie(Movie movie) {
         this.movies.add(movie);
@@ -55,10 +60,16 @@ public class Author implements Serializable {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
-                ", age=" + age +
+                "age=" + age +
                 ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +
+                ", movies=" + movies +
                 '}';
+    }
+
+    public Author(Integer age, String name, String genre) {
+        this.age = age;
+        this.name = name;
+        this.genre = genre;
     }
 }

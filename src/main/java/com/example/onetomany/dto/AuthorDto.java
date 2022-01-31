@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AuthorDto {
 
-    private Long id;
+    //private Long id;
 
     private Integer age;
 
@@ -23,7 +23,7 @@ public class AuthorDto {
 
     private String genre;
 
-    private List<Movie> books;//=new ArrayList<>();
+    //private List<Movie> books;//=new ArrayList<>();
 
 
 }

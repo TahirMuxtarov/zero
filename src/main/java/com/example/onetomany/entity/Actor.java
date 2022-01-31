@@ -1,5 +1,6 @@
 package com.example.onetomany.entity;
 
+import com.example.onetomany.listeners.ActorListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+//@EntityListeners(ActorListener.class)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,11 +27,12 @@ public class Actor {
 
     private Integer age;
 
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinTable(name = "actors_movies",
-    joinColumns = @JoinColumn(name="actor_id"),
-    inverseJoinColumns =@JoinColumn(name= "movie_id"))
+            joinColumns = @JoinColumn(name="actor_id"),
+            inverseJoinColumns =@JoinColumn(name= "movie_id"))
     private Set<Movie> movies = new HashSet<>();
 
     /*public Actor(String name, Integer age) {
@@ -54,12 +57,30 @@ public class Actor {
         this.age = age;
     }
 
-    @Override
+/*    @Override
     public String toString() {
         return "Actor{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", movies=" + movies +
+                '}';
+    }*/
+
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
+        movie.getActors().add(this);
+    }
+    public void removeMovie(Movie movie) {
+        this.movies.remove(movie);
+        movie.getActors().remove(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                //", movies=" + movies +
                 '}';
     }
 }

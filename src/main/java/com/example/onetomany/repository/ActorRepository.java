@@ -16,12 +16,10 @@ import java.util.List;
 @Repository
 public interface ActorRepository extends JpaRepository<Actor,Long> , JpaSpecificationExecutor<Actor> ,PagingAndSortingRepository<Actor,Long>{
 
+    @Query("select a from Actor a where a.name like %?1%")
     List<Actor> findAllByNameLike(String name);
 
-    List<Actor> findByAgeLessThan(
-
-            Integer age
-    );
+    List<Actor> findByAgeLessThan(Integer age);
 
     @Override
     default Page<Actor> findAll(Pageable pageable) {

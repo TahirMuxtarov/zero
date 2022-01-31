@@ -1,6 +1,8 @@
 package com.example.onetomany.controller;
 
+import com.example.onetomany.dto.AuthorDto;
 import com.example.onetomany.entity.Actor;
+import com.example.onetomany.entity.Author;
 import com.example.onetomany.entity.Movie;
 import com.example.onetomany.repository.AuthorRepository;
 import com.example.onetomany.repository.MovieRepository;
@@ -29,6 +31,12 @@ public class MovieController {
 
     @Autowired
     private MovieRepositoryCustomImpl movieRepositoryCustom;
+
+    @GetMapping("getAll")
+        public List<Movie> getAllMovies(){
+            return movieService.getAllMovies();
+        }
+
 
     @PostMapping("/{id}")
     public void addNewMovies(@PathVariable Long id,@RequestBody List<Movie> movie){
@@ -62,5 +70,18 @@ public class MovieController {
     @PostMapping("newActorTo/{id}")
     public void newActorsToExistingMovie(@PathVariable Long id,@RequestBody List<Actor>actors){
          movieService.newActorsToExistingMovie(id,actors);
+    }
+    @PostMapping("manyToOne")
+    public void testManyToOne(@RequestBody Movie movies){
+        movieService.save(movies);
+    }
+    @GetMapping("author/{id}")
+    public AuthorDto getAuthorByMovieId(@PathVariable Long id){
+        return movieService.getAuthorByMovieId(id);
+    }
+
+    @GetMapping("nameContaining/{containing}")
+    public List<Movie> nameContaining(@PathVariable String containing){
+        return movieRepository.findByTitleContaining(containing);
     }
 }
