@@ -80,6 +80,7 @@ public class AuthorController {
     }
     @GetMapping("n")
     public List<Author> getAllAuthorAndMovies(){
+
         return authorService.findAll();
     }
 

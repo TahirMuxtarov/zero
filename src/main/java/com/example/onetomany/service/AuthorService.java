@@ -88,7 +88,12 @@ public class AuthorService {
     @Transactional(isolation = Isolation.SERIALIZABLE,readOnly = true,rollbackFor = Exception.class)
 
     public List<Author> findAll() {
-        return authorRepository.findAll();
+
+       List<Author> list=  authorRepository.findAll();
+       /*for(Author a:list){
+           System.err.println(a.getMovies());
+       }*/
+       return list;
     }
 
     public Author save(Author author) {
